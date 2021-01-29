@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class CursosService {
     private cursos:Curso[]=[
         {
-          nombre: " Curso de HTML 5",
+          nombre: "Curso de HTML 5",
           descripcion: "HTML es un lenguaje de marcado que se utiliza para el desarrollo de páginas de Internet. Se trata de la siglas que corresponden a HyperText Markup Language, es decir, Lenguaje de Marcas de Hipertexto.",
           img: "assets/images/html.PNG",
           profesor:"Luis Gonzales Ayvar",
@@ -71,6 +71,20 @@ export class CursosService {
     }
     getCurso(idx: number){
       return this.cursos[idx];
+    }
+
+    buscarCursos( termino: string){
+      let cursosArr: Curso[]=[];
+      termino = termino.toLowerCase();
+
+      for( let curso of this.cursos){
+        let nombre = curso.nombre.toLowerCase();
+        if( nombre.indexOf( termino ) >= 0){
+          cursosArr.push(curso)
+        }
+
+      }
+     return cursosArr;
     }
 }
 export interface Curso{
